@@ -22,7 +22,7 @@ public class DamageDealer : Damegeable
     }
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log("trigger içine girdi");
+     
         // its search inside for Damageable class if there is its go to Take Damage;
         Damegeable damageable = col.gameObject.GetComponent<Damegeable>();
         WeaponSystemMain weaponsysMain = col.gameObject.GetComponentInParent<WeaponSystemMain>();

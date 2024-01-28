@@ -16,10 +16,5 @@ public class Rifles : WeaponSystemMain
     protected override float firingrate 
     { get => base.firingrate; 
       set => base.firingrate = 0.5f; }
-    public int silahýnmermisi;
-    protected override void Update()
-    {
-        base.Update();
-    }
-
+    
 }
