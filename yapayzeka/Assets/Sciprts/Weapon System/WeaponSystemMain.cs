@@ -9,11 +9,14 @@ using Input = UnityEngine.Input;
 
 public class WeaponSystemMain : MonoBehaviour
 {
-    
-    
-    [Header("Silah Alakalý")]
+    [Header("Silah Alakalý Objeler ve Transformlar")]   
+   
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform firePoint;
+    
+    [Header("Silah Deðiþkenleri")]
+    
+    [SerializeField] protected int CenkoSayac;
     [SerializeField] protected virtual float weaponDamage 
     { get; set; } 
     [SerializeField] protected int currentAmmo;
@@ -25,28 +28,35 @@ public class WeaponSystemMain : MonoBehaviour
     }
     [SerializeField] protected virtual int magCapacity
     {
-        get;
-        set;
+        get; set;
     }
     [SerializeField] protected virtual float firingrate
     {
         get; set;
     }
+    
     [SerializeField] protected virtual float nextTimeFire
     {
         get; set;
     }
-
+    
     [Header("Slider Ýçin Gerekli")]
+    
     [SerializeField] protected Slider slider;
     [SerializeField] protected Image FillArea;
+    
+    [Header("Text Ýçin Gerekliler")]
+    
+    [SerializeField] public Text text;
+   
     [SerializeField] protected virtual void Start()
     {
         ammoCapacity=currentAmmo;
     }
     protected virtual void Update()
     {
-        
+        SliderAmmoController();
+        MagToText();
         FireRateF(firingrate);
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -83,18 +93,24 @@ public class WeaponSystemMain : MonoBehaviour
 
        
     }
-    protected virtual int Reload()
+    protected virtual void Reload()
     {
-        if(Input.GetKeyDown(KeyCode.R) && magCapacity<0)
+        if(Input.GetKeyDown(KeyCode.R))
         {
-            return currentAmmo=ammoCapacity;
+            
+            currentAmmo=ammoCapacity;
             magCapacity--;
         }
         
-        return currentAmmo;
+    }
+    protected void MagToText()
+    {
+        string magText= magCapacity.ToString();
+        text.text = "Mag Capacity" + magText;
+        
     }
     
-    #region AreOfEffect for shotgun thing
+ #region AreOfEffect for shotgun thing
     //protected void AreaOfEffect(float effectAreaDistance, LayerMask effectedArea)
     //{
     //    RaycastHit[] shootedObject = Physics.SphereCastAll(transform.position,effectAreaDistance,transform.forward, effectAreaDistance,effectedArea);

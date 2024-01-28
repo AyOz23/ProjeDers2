@@ -37,7 +37,8 @@ public class Pistols : WeaponSystemMain
     }
     
     protected override int magCapacity
-    { get => base.magCapacity; set => base.magCapacity = 2; }
+    { get => base.magCapacity; 
+      set => base.magCapacity = 3; }
 
     protected override void Shot()
     {
@@ -64,10 +65,13 @@ public class Pistols : WeaponSystemMain
     protected override void Update()
     {
         base.Update();
+        Reload();
+        
 
-        SliderAmmoController();
-
-
+    }
+    protected override void Reload()
+    {
+        base.Reload();
     }
 }
     
