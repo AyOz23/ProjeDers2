@@ -24,7 +24,7 @@ public class dusman : MonoBehaviour
                 int hedef = Random.Range(0, 2);
 
                 GameObject obje = Instantiate(askerler[asker], cikislar[cikis].transform.position, Quaternion.identity);
-                obje.GetComponent<NewBehaviourScript>().hedefbelirle(hedefler[hedef]);
+                obje.GetComponent<KarakterTakip>().hedefbelirle(hedefler[hedef]);
             }
         }        
     }    

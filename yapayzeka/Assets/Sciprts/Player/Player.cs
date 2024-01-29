@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Kontrol
 {
     public float donmeHizi = 200f;
     public float hareketHizi = 5f;
