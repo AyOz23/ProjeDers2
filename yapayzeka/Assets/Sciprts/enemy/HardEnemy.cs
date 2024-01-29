@@ -12,15 +12,7 @@ public class HardEnemy : EnemyKontrol, IBossEnemy
     public Transform hedefObjesi;
     public NavMeshAgent navMeshAgent;
     float kritik = 2f;
-    public override void HasarAl(float damage)
-    {
-        Speed = 50;
-        base.HasarAl(damage * kritik);
-        isim = "BasicZ";
-        hp = 80;
-        SetAgentSpeed(Speed);
-        Atack();
-    }
+    
     void TasYagdir()
     {
         Vector3 hedefPozisyon = hedefObjesi.position;
