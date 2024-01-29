@@ -32,7 +32,8 @@ public abstract class Attack : MonoBehaviour, IBossEnemy
     {
         if (AtackYapabilirMi)
         {
-            InvokeRepeating("TasYagdir", 1f, 5f);
+            InvokeRepeating("TasYagdir", 1f, 5f); 
+            
 
         }
     }

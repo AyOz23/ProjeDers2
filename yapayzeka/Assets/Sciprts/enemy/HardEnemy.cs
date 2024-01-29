@@ -4,35 +4,44 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class HardEnemy : Kontrol
 {
-    public Player player;
+    public Player player2;
     public NavMeshAgent navMeshAgent;
+    public void Awake()
+    {
+        player2 = GameObject.FindObjectOfType<Player>();
+    }
     public void Start()
     {
         SetAgentSpeed(10);
         deger();
+        
     }
-    public override void Hasar()
+    public void Update()
     {
-        base.Hasar();
+        InvokeRepeating("Hasar2", 0f, 1000f);
+    }
+    public void Hasar2()
+    {
 
-        float dis = Vector3.Distance(transform.position, player.transform.position);
+        float dis = Vector3.Distance(transform.position, player2.transform.position);
 
-        if (dis <= 2f)
+        if (dis <= 1f)
         {
-            player.Healt -= Damage;
+            player2.Healt -= Damage;
+    
         }
 
     }
-    public override void deger()
+    public void deger()
     {
-        base.deger();
         Healt = 100f;
-        Speed = 12f;
+        Speed = 100f;
         Name = "HardEnemy";
-        Damage = 4f;
+        Damage = 0.01f;
     }
     void SetAgentSpeed(float speed)
     {

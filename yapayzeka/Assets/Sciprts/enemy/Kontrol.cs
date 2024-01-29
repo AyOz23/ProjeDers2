@@ -6,6 +6,7 @@ using UnityEngine;
 public class Kontrol : MonoBehaviour
 {
     private float healt;
+
     public float Damage { get; set; }
     public float Speed { get; set; }
     public string Name { get; set; }
@@ -23,17 +24,11 @@ public class Kontrol : MonoBehaviour
             }
         }
     }
-    public virtual void Hasar()
-    {
-        Healt -= Damage;
-    }
-    public virtual void deger()
-    {
-        Healt = 0;
-        Speed = 0;
-        Name = "    ";
-        Damage = 0;
-    }
+    //public virtual void Hasar()
+    //{
+    //    Healt -= Damage;
+    //}
+    
 
 
 }
