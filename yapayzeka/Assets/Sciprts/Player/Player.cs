@@ -15,7 +15,9 @@ public class Player : Kontrol
     {
         float yatayDonme = Input.GetAxis("Horizontal");
         float ileriHareket = Input.GetAxis("Vertical");
-        transform.Rotate(Vector3.up, yatayDonme * donmeHizi * Time.deltaTime);
+        // transform.Rotate(Vector3.up, yatayDonme * donmeHizi * Time.deltaTime);
+       
+
         transform.Translate(Vector3.forward * ileriHareket * hareketHizi * Time.deltaTime);
     }
     //public CharacterController characterController;

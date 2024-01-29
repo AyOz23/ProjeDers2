@@ -48,10 +48,14 @@ public class WeaponSystemMain : MonoBehaviour
     [Header("Text Ýçin Gerekliler")]
     
     [SerializeField] public Text text;
+
+    [Header("Raycast Atýþ Ýçin")]
+    [SerializeField] protected Camera _mainCamera;
    
     [SerializeField] protected virtual void Start()
     {
         ammoCapacity=currentAmmo;
+        _mainCamera=Camera.main;
     }
     protected virtual void Update()
     {
@@ -75,7 +79,15 @@ public class WeaponSystemMain : MonoBehaviour
             currentAmmo--;
             
           
-        }  
+        }
+        // Raycast shoot
+        RaycastHit hit;
+        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hit))
+        {
+            Transform objectHit = hit.transform;
+            Debug.Log("Vurulan Objenin Adý:" + hit.transform.gameObject);
+        }
     }
     protected virtual void FireRateF(float firingratee)
     {
