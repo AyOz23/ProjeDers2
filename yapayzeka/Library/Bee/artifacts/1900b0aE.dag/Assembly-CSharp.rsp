@@ -367,6 +367,7 @@
 "Assets/Sciprts/enemy/IBossEnemy.cs"
 "Assets/Sciprts/enemy/NormalEnemy.cs"
 "Assets/Sciprts/NewBehaviourScript.cs"
+"Assets/Sciprts/PauseMenu.cs"
 "Assets/Sciprts/Player/Player.cs"
 "Assets/Sciprts/Weapon System/Bullet/BulletScript.cs"
 "Assets/Sciprts/Weapon System/FireRate.cs"
