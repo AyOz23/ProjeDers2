@@ -4,5 +4,6 @@ using UnityEngine;
 
 public interface IDamageAble
 {
+    int IHealth { get; set; }
     void TakeDamage(float DamageAmount);
 }
