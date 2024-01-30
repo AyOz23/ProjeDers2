@@ -172,11 +172,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4cca39ccdf96a649802273821b416ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 500
-  Speed: 55
-  isim: A
-  tasPrefab: {fileID: 4347151188084090311, guid: 196083b92ba5bdd479c8671560dd7816, type: 3}
-  tasSayisi: 8
-  yagisHizi: 50
-  hedefObjesi: {fileID: 246259957187851431}
+  player2: {fileID: 0}
   navMeshAgent: {fileID: 3236948266583542708}

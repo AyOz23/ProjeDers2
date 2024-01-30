@@ -11,6 +11,8 @@ public class Pistols : WeaponSystemMain
     // ammo 14 
     private int ammoCapacityGet;
     private int weaponDamageGet;
+
+    
     [SerializeField] private bool BoostThirtShoot = false;
     protected override int ammoCapacity
     {

@@ -6705,12 +6705,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 1100556713708880558, guid: 963300ef5cbca4d4ca5fdddb463e4b57, type: 3}
   firePoint: {fileID: 1940896481}
+  weaponDamgePublic: 0
   CenkoSayac: 0
   currentAmmo: 20
   slider: {fileID: 818661390}
   FillArea: {fileID: 2752972}
   text: {fileID: 1079504651}
-  _mainCamera: {fileID: 0}
+  _mainCamera: {fileID: 2080230152}
+  weaponDamgePublic: 0
   BoostThirtShoot: 0
 --- !u!54 &1852357055
 Rigidbody:

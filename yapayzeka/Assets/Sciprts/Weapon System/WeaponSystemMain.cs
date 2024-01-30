@@ -13,7 +13,8 @@ public class WeaponSystemMain : MonoBehaviour
    
     [SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected Transform firePoint;
-    
+       public int weaponDamgePublic;
+
     [Header("Silah Deðiþkenleri")]
     
     [SerializeField] protected int CenkoSayac;
@@ -40,6 +41,7 @@ public class WeaponSystemMain : MonoBehaviour
         get; set;
     }
     
+    
     [Header("Slider Ýçin Gerekli")]
     
     [SerializeField] protected Slider slider;
@@ -62,7 +64,7 @@ public class WeaponSystemMain : MonoBehaviour
         SliderAmmoController();
         MagToText();
         FireRateF(firingrate);
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shot();
 
@@ -70,25 +72,31 @@ public class WeaponSystemMain : MonoBehaviour
         }
     }
     protected virtual void Shot()
-    {     
-        // buraya bool ile fire rate gelicek
-        if (ammoCapacity > 0 && currentAmmo > 0)
-        {           
-                // Ammo Not Moving probly;
+    {
+        if (ammoCapacity > 0 && currentAmmo > 0 && Time.time >= nextTimeFire)
+        {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             currentAmmo--;
-            
-          
+            FireRateF(firingrate);
+
+            // Raycast shoot
+            RaycastHit hit;
+            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit))
+            {
+                Transform objectHit = hit.transform;
+                Debug.Log("Vurulan Objenin Adý:" + hit.transform.gameObject);
+
+                // Check if the hit object implements IDamageAble
+                IDamageAble damageAble = objectHit.GetComponent<IDamageAble>();
+                if (damageAble != null)
+                {
+                    damageAble.TakeDamage(weaponDamage);
+                }
+            }
         }
-        // Raycast shoot
-        RaycastHit hit;
-        Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit))
-        {
-            Transform objectHit = hit.transform;
-            Debug.Log("Vurulan Objenin Adý:" + hit.transform.gameObject);
-        }
-    }
+    
+}
     protected virtual void FireRateF(float firingratee)
     {
         nextTimeFire = Time.time + 1f / firingratee;

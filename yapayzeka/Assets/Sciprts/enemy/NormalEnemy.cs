@@ -1,26 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class NormalEnemy : Kontrol
+public class NormalEnemy : Kontrol, IDamageAble
 {
     public Player player;
+    
     public NavMeshAgent navMeshAgent;
+    private float healtCenker;
+    public Pistols pistol;
+
     public void Awake()
     {
         player = GameObject.FindObjectOfType<Player>();
+        pistol = GameObject.FindObjectOfType<Pistols>();
     }
+  
     public void Start()
     {
         SetAgentSpeed(10);
         deger();
-        
+
+
+
     }
     public void Update()
     {
         InvokeRepeating("Hasar", 0f, 1000f);
+        if (Healt < 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public void Hasar()
     {
@@ -45,5 +54,38 @@ public class NormalEnemy : Kontrol
     void SetAgentSpeed(float speed)
     {
         navMeshAgent.speed = speed;
+    }
+
+    public void TakeDamage(float DamageAmount)
+    {
+        throw new System.NotImplementedException();
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Çarpýþan nesnenin etiketini kontrol et
+        if (collision.gameObject.tag == "Mermi")
+        {
+            Healt -= pistol.weaponDamgePublic;
+            Debug.Log("ÇArpýþtý Mermi");
+        }
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        // Çarpýþan nesnenin etiketini kontrol et
+        if (hit.gameObject.tag == "Mermi")
+        {
+            Healt -= 10;
+            Debug.Log("ÇArpýþtý Mermi");
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        // Çarpýþan nesnenin etiketini kontrol et
+        if (other.gameObject.tag == "Mermi")
+        {
+            Healt -= 10;
+            Debug.Log("Düþmana Verilen Hasar" + pistol.weaponDamgePublic);
+        }
     }
 }

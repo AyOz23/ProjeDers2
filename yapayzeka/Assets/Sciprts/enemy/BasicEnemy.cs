@@ -1,19 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Transactions;
-using System.Xml.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class BasicEnemy : Kontrol
 {
     public Player player1;
     public NavMeshAgent navMeshAgent;
+    public Pistols pistol2;
     public void Awake()
     {
         player1 = GameObject.FindObjectOfType<Player>();
+        pistol2 = GameObject.FindObjectOfType<Pistols>();
     }
     public void Start()
     {
@@ -24,6 +20,10 @@ public class BasicEnemy : Kontrol
     public void Update()
     {
         InvokeRepeating("Hasar1", 0f, 1000f);
+        if (Healt < 0)
+        {
+            Destroy(gameObject);
+        }
     }
     public void Hasar1()
     {
@@ -47,6 +47,35 @@ public class BasicEnemy : Kontrol
     {
         navMeshAgent.speed = speed;
     }
-   
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Çarpýþan nesnenin etiketini kontrol et
+        if (collision.gameObject.tag == "Mermi")
+        {
+            Healt -= pistol2.weaponDamgePublic;
+            Debug.Log("ÇArpýþtý Mermi");
+        }
+    }
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {  
+        // Çarpýþan nesnenin etiketini kontrol et
+        if (hit.gameObject.tag == "Mermi")
+        {
+            Healt -= pistol2.weaponDamgePublic;
+            Debug.Log("ÇArpýþtý Mermi");
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        // Çarpýþan nesnenin etiketini kontrol et
+        if (other.gameObject.tag == "Mermi")
+        {
+            Healt -= pistol2.weaponDamgePublic;
+            Debug.Log("Düþmana Verilen Hasar" + pistol2.weaponDamgePublic);
+        }
+    }
+    
+
 }
     
